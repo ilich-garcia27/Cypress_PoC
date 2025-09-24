@@ -1,5 +1,3 @@
-import { log } from "@badeball/cypress-cucumber-preprocessor";
-
 class SignInPage {
   visit() {
     cy.visit('/signin');
@@ -28,6 +26,7 @@ class SignInPage {
   enterValidCredentials() {
     this.emailInput.should('be.visible').clear().type(Cypress.env('EMAIL'));
     this.passwordInput.should('be.visible').clear().type(Cypress.env('PASSWORD'), { log: false });
+    cy.intercept('GET', 'https://qa.meetmarlo.com/assets/locale/en/ecp.json').as('getECP'); // Intercept the ECP data request.
   }
 }
 

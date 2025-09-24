@@ -59,7 +59,7 @@ class DashboardPage {
   generateRandomUser() {
     const firstName = faker.person.firstName();
     const lastName = faker.person.lastName();
-    const email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@mailinator.com";
+    const email = "cypress." + firstName.toLowerCase() + "." + lastName.toLowerCase() + "@mailinator.com";
     const scheduledExamDate = getCurrentDateMMDDYYYY();
 
     return { firstName, lastName, email, scheduledExamDate };

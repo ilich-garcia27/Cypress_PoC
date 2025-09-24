@@ -11,4 +11,6 @@ Feature: Patient order and payment
     And I click MANUAL ENTRY button
     And I enter patient information
     And I enter RX information
-    
+    And I process the order
+    And I collect payment in office
+    Then I should see a confirmation message saying "Your order has been placed!"

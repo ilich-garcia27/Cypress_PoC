@@ -20,11 +20,13 @@ module.exports = defineConfig({
 
       config.env.EMAIL = process.env.EMAIL;
       config.env.PASSWORD = process.env.PASSWORD;
+      config.env.ZIPCODE = process.env.ZIPCODE;
+      config.env.ADDRESS1 = process.env.ADDRESS1;
 
       return config;
     },
     baseUrl: 'https://qa.meetmarlo.com',
-    supportFile: false
+    supportFile: 'cypress/support/e2e.js',
   },
   viewportWidth: 1920,
   viewportHeight: 1080

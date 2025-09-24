@@ -10,6 +10,7 @@ class OrderPreviewPage {
   createOrderInOffice() {
     this.dispenseFromInventoryLabel.should('exist').click();
     this.createOrderInOfficeButton.should('exist').click();
+    cy.intercept('GET', /\/orders\/.*\/check-product-availability/).as('checkProductAvailability');
   }
 }
 

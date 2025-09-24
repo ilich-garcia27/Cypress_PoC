@@ -3,6 +3,9 @@ import SignInPage from '../../page_objects/SignInPage';
 import DashboardPage from '../../page_objects/DashboardPage';
 import PatientInformationPage from '../../page_objects/PatientInformationPage';
 import OrderPreviewPage from '../../page_objects/OrderPreviewPage';
+import FirstPatientOrderPage from '../../page_objects/FirstPatientOrderPage';
+import ReviewAndPayPage from '../../page_objects/ReviewAndPayPage';
+import OrderPlacedPage from '../../page_objects/OrderPlacedPage';
 
 Given('I open the sign in page', () => {
   SignInPage.visit();
@@ -14,7 +17,6 @@ When('I enter valid credentials', () => {
 });
 
 When('I click the sign in button', () => {
-  cy.intercept('GET', 'https://qa.meetmarlo.com/assets/locale/en/ecp.json').as('getECP'); // Intercept the ECP data request.
   SignInPage.signInButton.should('be.visible').click();
 });
 
@@ -34,5 +36,17 @@ When('I enter patient information', () => {
 
 When('I enter RX information', () => {
   PatientInformationPage.enterPatientInfo();
+});
+
+When('I process the order', () => {
   OrderPreviewPage.createOrderInOffice();
+  FirstPatientOrderPage.fillInSupplySelection();
+});
+
+When('I collect payment in office', () => {
+  ReviewAndPayPage.payDirectlyToOffice();
+});
+
+Then('I should see a confirmation message saying {string}', (confirmationMessage) => {
+  OrderPlacedPage.verifyOrderPlaced(confirmationMessage);
 });
