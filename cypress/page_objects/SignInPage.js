@@ -1,4 +1,6 @@
-class SigninPage {
+import { log } from "@badeball/cypress-cucumber-preprocessor";
+
+class SignInPage {
   visit() {
     cy.visit('/signin');
   }
@@ -23,15 +25,10 @@ class SigninPage {
     return cy.get('.CTADashboardPage-css__WelcomeText-sc-8f13290b-10');
   }
 
-  enterCredentials(email, password) {
-    if (email != "") {
-      this.emailInput.should('be.visible').clear().type(email);
-    }
-
-    if (password != "") {
-      this.passwordInput.should('be.visible').clear().type(password);
-    }
+  enterValidCredentials() {
+    this.emailInput.should('be.visible').clear().type(Cypress.env('EMAIL'));
+    this.passwordInput.should('be.visible').clear().type(Cypress.env('PASSWORD'), { log: false });
   }
 }
 
-export default new SigninPage();
+export default new SignInPage();

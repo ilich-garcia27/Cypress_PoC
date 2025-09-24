@@ -1,13 +1,14 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
 import SignInPage from '../../page_objects/SignInPage';
+import DashboardPage from '../../page_objects/DashboardPage';
 
 Given('I open the sign in page', () => {
   SignInPage.visit();
   SignInPage.acceptCookiesButton.should('be.visible').click();
 });
 
-When('I enter email {string} and password {string}', (email, password) => {
-  SignInPage.enterCredentials(email, password);
+When('I enter valid credentials', () => {
+  SignInPage.enterValidCredentials();
 });
 
 When('I click the sign in button', () => {
@@ -15,7 +16,16 @@ When('I click the sign in button', () => {
   SignInPage.signInButton.should('be.visible').click();
 });
 
-Then('I should see the dashboard page', () => {
+When('I click ENTER RX button in the dashboard', () => {
   cy.wait('@getECP', { timeout: 10000 }); // // Wait until the ECP data is loaded.
-  SignInPage.welcomeMessage.should('exist').and('contain.text', 'Welcome');
+  DashboardPage.enterRXButton.should('exist').and('contain.text', 'Enter Rx').click();
 });
+
+When('I click MANUAL ENTRY button', () => {
+  DashboardPage.manualEntryButton.should('exist').and('contain.text', 'Manual Entry').click();
+});
+
+When('I enter patient information', () => {
+  const patient = DashboardPage.enterPatientInfo();
+});
+
