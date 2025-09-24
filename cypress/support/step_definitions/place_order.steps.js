@@ -48,5 +48,6 @@ When('I collect payment in office', () => {
 });
 
 Then('I should see a confirmation message saying {string}', (confirmationMessage) => {
+  OrderPlacedPage.closeItemsToCollectModal();
   OrderPlacedPage.verifyOrderPlaced(confirmationMessage);
 });

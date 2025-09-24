@@ -6,6 +6,8 @@ const dotenv = require('cypress-dotenv');
 
 module.exports = defineConfig({
   e2e: {
+    video: true,
+    videosFolder: "cypress/videos",
     specPattern: '**/*.feature',
     cucumber: {
       stepDefinitions: ['cypress/support/step_definitions/**/*.js']
