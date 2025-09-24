@@ -10,3 +10,5 @@ Feature: Patient order and payment
     When I click ENTER RX button in the dashboard
     And I click MANUAL ENTRY button
     And I enter patient information
+    And I enter RX information
+    

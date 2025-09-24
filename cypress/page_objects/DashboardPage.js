@@ -13,7 +13,7 @@ class DashboardPage {
   get manualEntryButton() {
     return cy.get('.PatientInfoEntryButtonAndModal-css__ButtonDropdown-sc-f425eafa-2 > :nth-child(2)');
   }
-  
+
   get emailInput() {
     return cy.get('#email');
   }
@@ -30,6 +30,18 @@ class DashboardPage {
     return cy.get('#scheduledExamDate');
   }
 
+  get enterRXButtonInModal() {
+    return cy.get(':nth-child(6) > .Popover-css__Trigger-sc-32d8e327-1 > .Button-css__ButtonV2-sc-2061d39f-0');
+  }
+
+  get patientConsentButton() {
+    return cy.get('#consent-wrapper > .Checkbox-css__CheckboxLabel-sc-fe1d40e3-0');
+  }
+
+  get nextButtonInPatientConsent() {
+    return cy.get('.PatientVerbalConsentModal-css__ButtonContainer-sc-348a6570-8 > .Button-css__ButtonV2-sc-2061d39f-0');
+  }
+
   enterPatientInfo() {
     const patient = this.generateRandomUser();
 
@@ -37,6 +49,9 @@ class DashboardPage {
     this.firstNameInput.should('be.visible').clear().type(patient.firstName);
     this.lastNameInput.should('be.visible').clear().type(patient.lastName);
     this.scheduledExamDateInput.should('be.visible').clear().type(patient.scheduledExamDate);
+    this.enterRXButtonInModal.should('be.visible').click();
+    this.patientConsentButton.should('be.visible').click();
+    this.nextButtonInPatientConsent.should('be.visible').click();
 
     return patient;
   }
