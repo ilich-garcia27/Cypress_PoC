@@ -7,10 +7,18 @@ class OrderPlacedPage {
     return cy.get('.header__instructions');
   }
 
+  get orderConfirmationEmail() {
+    return cy.get('.shipment-summary__shipping-email');
+  }
+
   verifyOrderPlaced(confirmationMessage) {
     cy.url().should('include', '/office-checkout/confirmation');
     this.gotItButton.should('be.visible').and('not.be.disabled').click();
     this.orderConfirmationText.should('be.visible').and('contain.text', confirmationMessage);
+
+    cy.get('@patient').its('email').then((email) => {
+      this.orderConfirmationEmail.should('contain.text', email);
+    });
   }
 }
 
