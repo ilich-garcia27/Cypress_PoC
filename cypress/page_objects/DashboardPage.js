@@ -42,7 +42,12 @@ class DashboardPage {
     return cy.get('.PatientVerbalConsentModal-css__ButtonContainer-sc-348a6570-8 > .Button-css__ButtonV2-sc-2061d39f-0');
   }
 
-  enterPatientInfo() {
+  openPatientModal() {
+    this.enterRXButton.should('exist').and('contain.text', 'Enter Rx').click();
+    this.manualEntryButton.should('exist').and('contain.text', 'Manual Entry').click();
+  }
+
+  enterPatientDetails() {
     const patient = this.generateRandomUser();
 
     this.emailInput.should('be.visible').clear().type(patient.email);
@@ -53,7 +58,7 @@ class DashboardPage {
     this.patientConsentButton.should('be.visible').click();
     this.nextButtonInPatientConsent.should('be.visible').click();
 
-    return patient;
+    cy.wrap(patient).as('patient'); // Store patient data for later use.
   }
 
   generateRandomUser() {

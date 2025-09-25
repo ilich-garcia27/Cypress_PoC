@@ -43,7 +43,7 @@ class PatientInformationPage {
     return cy.get('.jITa-dw');
   }
 
-  enterPatientInfo() {
+  enterPatientRXInfo() {
     this.newWearerRadioButton.should('exist').click();
     this.nextButtonInPatientTypeModal.should('exist').click();
     this.mobileNumberInput.should('be.visible').clear().type('4305582933');

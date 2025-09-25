@@ -16,21 +16,13 @@ When('I enter valid credentials', () => {
   SignInPage.enterValidCredentials();
 });
 
-When('I click ENTER RX button in the dashboard', () => {
-  DashboardPage.enterRXButton.should('exist').and('contain.text', 'Enter Rx').click();
+When('I enter patient details', () => {
+  DashboardPage.openPatientModal();
+  DashboardPage.enterPatientDetails();
 });
 
-When('I click MANUAL ENTRY button', () => {
-  DashboardPage.manualEntryButton.should('exist').and('contain.text', 'Manual Entry').click();
-});
-
-When('I enter patient information', () => {
-  const patient = DashboardPage.enterPatientInfo();
-  cy.wrap(patient).as('patient'); // Store patient data for later use
-});
-
-When('I enter RX information', () => {
-  PatientInformationPage.enterPatientInfo();
+When('I enter patient RX information', () => {
+  PatientInformationPage.enterPatientRXInfo();
 });
 
 When('I process the order', () => {
