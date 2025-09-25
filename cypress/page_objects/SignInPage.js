@@ -27,6 +27,8 @@ class SignInPage {
     this.emailInput.should('be.visible').clear().type(Cypress.env('EMAIL'));
     this.passwordInput.should('be.visible').clear().type(Cypress.env('PASSWORD'), { log: false });
     cy.intercept('GET', '**/assets/locale/en/ecp.json').as('getECP'); // Intercept the ECP data request.
+    this.signInButton.should('be.visible').and('not.be.disabled').click();
+    cy.wait('@getECP', { timeout: 10000 }); // // Wait until the ECP data is loaded.
   }
 }
 

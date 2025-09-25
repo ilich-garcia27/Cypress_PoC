@@ -3,7 +3,7 @@ import SignInPage from '../../page_objects/SignInPage';
 import DashboardPage from '../../page_objects/DashboardPage';
 import PatientInformationPage from '../../page_objects/PatientInformationPage';
 import OrderPreviewPage from '../../page_objects/OrderPreviewPage';
-import FirstPatientOrderPage from '../../page_objects/FirstPatientOrderPage';
+import PatientOrderPage from '../../page_objects/PatientOrderPage';
 import ReviewAndPayPage from '../../page_objects/ReviewAndPayPage';
 import OrderPlacedPage from '../../page_objects/OrderPlacedPage';
 
@@ -16,12 +16,7 @@ When('I enter valid credentials', () => {
   SignInPage.enterValidCredentials();
 });
 
-When('I click the sign in button', () => {
-  SignInPage.signInButton.should('be.visible').click();
-});
-
 When('I click ENTER RX button in the dashboard', () => {
-  cy.wait('@getECP', { timeout: 10000 }); // // Wait until the ECP data is loaded.
   DashboardPage.enterRXButton.should('exist').and('contain.text', 'Enter Rx').click();
 });
 
@@ -40,7 +35,7 @@ When('I enter RX information', () => {
 
 When('I process the order', () => {
   OrderPreviewPage.createOrderInOffice();
-  FirstPatientOrderPage.fillInSupplySelection();
+  PatientOrderPage.fillInSupplySelection();
 });
 
 When('I collect payment in office', () => {

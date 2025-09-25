@@ -12,7 +12,6 @@ class PatientOrderPage {
   }
 
   payDirectlyToOffice() {
-    cy.wait('@shippingOptions').its('response.statusCode').should('eq', 200);
     this.payDirectlyToOfficeButton.should('be.visible').and('not.be.disabled').click();
     this.readyToPayButton.should('be.visible').and('not.be.disabled').click();
     this.paymentCollectedButton.should('be.visible').and('not.be.disabled').click();

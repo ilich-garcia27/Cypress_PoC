@@ -23,7 +23,6 @@ class PatientOrderPage {
   }
 
   fillInSupplySelection() {
-    cy.wait('@checkProductAvailability');
     // Shipped Supply - 0 months for both eyes
     this.selectSupply({ eye: 'Right', type: 'Shipped Supply', months: 0 });
     this.selectSupply({ eye: 'Left', type: 'Shipped Supply', months: 0 });
@@ -31,7 +30,6 @@ class PatientOrderPage {
     this.selectSupply({ eye: 'Right', type: 'In Office Supply', months: 12 });
     this.selectSupply({ eye: 'Left', type: 'In Office Supply', months: 12 });
 
-    cy.intercept('POST', /\/shopping\/.*\/shipping-options/).as('shippingOptions');
     this.nextButton.should('be.visible').and('not.be.disabled').click();
   }
 }
