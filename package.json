@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:open:qa": "cypress open --env environment=qa",
+    "cypress:open:trn": "cypress open --env environment=trn",
+    "cypress:run:qa": "cypress run --env environment=qa",
+    "cypress:run:trn": "cypress run --env environment=trn"
   },
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^23.2.0",

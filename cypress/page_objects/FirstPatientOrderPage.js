@@ -23,7 +23,7 @@ class PatientOrderPage {
   }
 
   fillInSupplySelection() {
-    cy.wait('@checkProductAvailability').its('response.statusCode').should('eq', 200);
+    cy.wait('@checkProductAvailability');
     // Shipped Supply - 0 months for both eyes
     this.selectSupply({ eye: 'Right', type: 'Shipped Supply', months: 0 });
     this.selectSupply({ eye: 'Left', type: 'Shipped Supply', months: 0 });

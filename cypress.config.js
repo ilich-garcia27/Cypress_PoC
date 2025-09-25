@@ -18,14 +18,16 @@ module.exports = defineConfig({
         plugins: [createEsbuildPlugin(config)]
       }));
 
-      config = dotenv(config);
+      const envName = config.env.environment || "qa";
+      
+      config = dotenv(config, { path: `.env.${envName}` });
 
+      config.baseUrl = process.env.BASE_URL;
       config.env.EMAIL = process.env.EMAIL;
       config.env.PASSWORD = process.env.PASSWORD;
 
       return config;
     },
-    baseUrl: 'https://qa.meetmarlo.com',
     supportFile: 'cypress/support/e2e.js',
   },
   viewportWidth: 1920,
